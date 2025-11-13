@@ -1,73 +1,166 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartCell Sentinel | AI 5G Degradation Detection & Recovery</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fa; color: #222; }
-    header { background: #0d47a1; color: white; text-align: center; padding: 50px 20px; }
-    h1 { margin: 0; font-size: 5em; }
-    h2 { color: #0d47a1; }
-    section { max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 3.7; }
-    footer { background: #0d47a1; color: white; text-align: center; padding: 20px; font-size: 4.9em; }
-    .en { color: #555; font-size: 4.9em; margin-top: 5px; }
-    img.logo { width: 120px; margin-top: 15px; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCell Sentinel | AI 5G Degradation Detection & Recovery</title>
+  <style>
+    /* 基礎樣式和響應式字體設定 */
+    :root {
+      /* 在大螢幕上定義一個基礎字體大小，使用 vw 讓它隨著螢幕寬度變化 */
+      font-size: 16px; /* 基礎 fallback */
+    }
+
+    body {
+      font-family: 'Arial', 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      color: #222;
+      line-height: 1.6; /* 調整行高以提升閱讀性 */
+    }
+
+    header {
+      background: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem; /* 使用 rem 單位 */
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3.5rem; /* 使用 rem 單位 */
+    }
+
+    h2 {
+      color: #0d47a1;
+      font-size: 2rem; /* 使用 rem 單位 */
+      margin-top: 1.5rem;
+      border-bottom: 2px solid #0d47a1;
+      padding-bottom: 0.5rem;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 2rem auto; /* 使用 rem 單位 */
+      padding: 0 1rem;
+    }
+
+    p, li {
+      font-size: 1.1rem; /* 基礎內容字體 */
+      margin-bottom: 1rem;
+    }
+    
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    footer {
+      background: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .en {
+      color: #ccc; /* 調整顏色以符合背景 */
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: block; /* 確保自己佔一行 */
+    }
+    
+    header .en {
+      color: yellow; /* 標頭的英文調整回黃色 */
+      font-size: 1.2rem;
+    }
+
+    img.logo {
+      max-width: 120px;
+      height: auto; /* 確保圖片等比例縮放 */
+      margin-top: 1rem;
+    }
+    
+    /* 媒體查詢：針對小螢幕（手機）進行優化 */
+    @media (max-width: 600px) {
+      :root {
+        font-size: 14px; /* 在小螢幕上將基礎字體縮小 */
+      }
+      
+      h1 {
+        font-size: 2.5rem; /* 標題在手機上進一步縮小 */
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      section {
+        margin: 1.5rem auto;
+      }
+    }
+
+    /* 媒體查詢：針對特大螢幕 */
+    @media (min-width: 1200px) {
+      :root {
+        font-size: 18px; /* 在大螢幕上將基礎字體放大 */
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>SmartCell Sentinel</h1>
-    <img src="logo.png" alt="SmartCell Sentinel Logo" class="logo"/>
-    <p>AI 行動通訊細胞劣化與恢復偵測系統</p>
-    <p class="en" color: yellow >AI System for 5G Cell Degradation Detection and Recovery</p>
-  </header>
+  <header>
+    <h1>SmartCell Sentinel</h1>
+    <img src="logo.png" alt="SmartCell Sentinel Logo" class="logo"/>
+    <p>AI 行動通訊細胞劣化與恢復偵測系統</p>
+    <p class="en">AI System for 5G Cell Degradation Detection and Recovery</p>
+  </header>
 
-  <section>
-    <h2>🌍 專案簡介 / Overview</h2>
-    <p>
-      SmartCell Sentinel 是一套以資料驅動的 AI 系統，用於偵測 5G 網路中「潛在劣化」並自動判定恢復。
-      系統整合多層級劣化指標（斜率、異常日比例、變異數變化等），能即時分析上萬個基地台的品質趨勢。
-    </p>
-    <p class="en">
-      SmartCell Sentinel is a data-driven AI system that detects potential 5G cell degradation and identifies recovery automatically. 
-      It combines multiple explainable indicators—trend slope, abnormal-day ratio, and volatility changes—to monitor thousands of base stations in real time.
-    </p>
-  </section>
+  <section>
+    <h2>🌍 專案簡介 / Overview</h2>
+    <p>
+      SmartCell Sentinel 是一套以資料驅動的 AI 系統，用於偵測 5G 網路中「潛在劣化」並自動判定恢復。
+      系統整合多層級劣化指標（斜率、異常日比例、變異數變化等），能即時分析上萬個基地台的品質趨勢。
+    </p>
+    <p class="en">
+      SmartCell Sentinel is a data-driven AI system that detects potential 5G cell degradation and identifies recovery automatically. 
+      It combines multiple explainable indicators—trend slope, abnormal-day ratio, and volatility changes—to monitor thousands of base stations in real time.
+    </p>
+  </section>
 
-  <section>
-    <h2>⚙️ 核心特點 / Key Features</h2>
-    <ul>
-      <li>📉 多層級劣化偵測與自動恢復判斷</li>
-      <li>🔍 可解釋、模組化邏輯，非黑箱設計</li>
-      <li>🌱 支援 ESG 減碳效益分析：降低 70% 現場派工</li>
-      <li>🛰️ 可擴展至私有 5G 與國防通訊網路</li>
-    </ul>
-    <ul class="en">
-      <li>Multi-level degradation detection and automated recovery decision</li>
-      <li>Explainable, modular logic — transparent AI design</li>
-      <li>ESG impact: 70% reduction in field dispatches</li>
-      <li>Scalable to private 5G and defense communication networks</li>
-    </ul>
-  </section>
+  <section>
+    <h2>⚙️ 核心特點 / Key Features</h2>
+    <ul>
+      <li>📉 多層級劣化偵測與自動恢復判斷</li>
+      <li>🔍 可解釋、模組化邏輯，非黑箱設計</li>
+      <li>🌱 支援 ESG 減碳效益分析：降低 70% 現場派工</li>
+      <li>🛰️ 可擴展至私有 5G 與國防通訊網路</li>
+    </ul>
+    <ul class="en">
+      <li>Multi-level degradation detection and automated recovery decision</li>
+      <li>Explainable, modular logic — transparent AI design</li>
+      <li>ESG impact: 70% reduction in field dispatches</li>
+      <li>Scalable to private 5G and defense communication networks</li>
+    </ul>
+  </section>
 
-  <section>
-    <h2>🏆 榮譽 / Achievements</h2>
-    <p>🏅 MobileHeroes Global 2025 Finalist（全球前 10 強）</p>
-    <p>🥈 黑客節 Hackathon 2025 — 第二名</p>
-    <p class="en">
-      🏅 Finalist at MobileHeroes Global 2025  
-      🥈 2nd Place at 2025 Hackathon
-    </p>
-  </section>
+  <section>
+    <h2>🏆 榮譽 / Achievements</h2>
+    <p>🏅 MobileHeroes Global 2025 Finalist（全球前 10 強）</p>
+    <p>🥈 黑客節 Hackathon 2025 — 第二名</p>
+    <p class="en">
+      🏅 Finalist at MobileHeroes Global 2025  
+      🥈 2nd Place at 2025 Hackathon
+    </p>
+  </section>
 
-  <section>
-    <h2>📩 聯絡方式 / Contact</h2>
-    <p>Email: <a href="mailto:besta58@gmail.com">besta58@gmail.com</a></p>
-  </section>
+  <section>
+    <h2>📩 聯絡方式 / Contact</h2>
+    <p>Email: <a href="mailto:besta58@gmail.com">besta58@gmail.com</a></p>
+  </section>
 
-  <footer>
-    © 2025 SmartCell Sentinel | Designed for Sustainable Networks 🌱
-  </footer>
+  <footer>
+    © 2025 SmartCell Sentinel | Designed for Sustainable Networks 🌱
+  </footer>
 </body>
 </html>
